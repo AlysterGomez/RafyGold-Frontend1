@@ -1,8 +1,8 @@
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
-// On définit l'URL en dur pour être certain de taper au bon endroit
-const API_URL = "https://rafygold-app.onrender.com";
+// On définit l'URL de base incluant le préfixe de l'API
+const API_URL = "https://rafygold-app.onrender.com/api/v1";
 
 const AuthContext = createContext(null);
 
@@ -16,10 +16,10 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem("rafy_token"));
+  const [token, setToken] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Instance API simplifiée
+  // Instance API configurée avec l'URL de Render
   const api = axios.create({
     baseURL: API_URL,
   });
@@ -44,8 +44,9 @@ export const AuthProvider = ({ children }) => {
       try {
         const response = await api.get("/auth/me");
         setUser(response.data);
+        setToken(storedToken);
       } catch (error) {
-        console.error("Token invalide");
+        console.error("Token invalide ou serveur injoignable");
         localStorage.removeItem("rafy_token");
         setToken(null);
         setUser(null);
@@ -58,14 +59,14 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (email, password) => {
-    // On utilise axios direct pour le login pour éviter les headers vides
+    // Appel vers https://rafygold-app.onrender.com/api/v1/auth/login
     const response = await axios.post(`${API_URL}/auth/login`, { email, password });
+    
+    // On récupère les données (vérifie que ton backend renvoie bien access_token et user)
     const { access_token, user: userData } = response.data;
     
-    // 1. Stockage physique
+    // Stockage et mise à jour des états
     localStorage.setItem("rafy_token", access_token);
-    
-    // 2. Mise à jour des états (déclenche isAuthenticated dans App.js)
     setToken(access_token);
     setUser(userData);
     
@@ -82,7 +83,7 @@ export const AuthProvider = ({ children }) => {
     user,
     token,
     loading,
-    isAuthenticated: !!user, // C'est cette valeur que App.js surveille
+    isAuthenticated: !!user,
     login,
     logout,
     api,
