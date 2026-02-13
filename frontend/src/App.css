@@ -1,0 +1,245 @@
+/* RAFY GOLD Custom Styles */
+
+/* Background gradient */
+.rafy-bg {
+    background: #09090b;
+    background-image: radial-gradient(circle at 50% 0%, rgba(255, 215, 0, 0.08), transparent 50%);
+    min-height: 100vh;
+}
+
+/* Login background */
+.login-bg {
+    background: linear-gradient(135deg, #09090b 0%, #18181b 100%);
+    position: relative;
+}
+
+.login-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.15), transparent 40%),
+                radial-gradient(circle at 70% 80%, rgba(255, 215, 0, 0.1), transparent 40%);
+    pointer-events: none;
+}
+
+/* Gold border animation */
+@keyframes borderGlow {
+    0%, 100% {
+        border-color: rgba(255, 215, 0, 0.3);
+    }
+    50% {
+        border-color: rgba(255, 215, 0, 0.6);
+    }
+}
+
+.border-glow {
+    animation: borderGlow 3s ease-in-out infinite;
+}
+
+/* Card hover effects */
+.card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+/* Button styles */
+.btn-gold {
+    background: #FFD700;
+    color: #000;
+    font-weight: 600;
+    border-radius: 9999px;
+    padding: 0.75rem 2rem;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-gold:hover {
+    background: #E6C200;
+    transform: scale(1.02);
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+}
+
+.btn-gold:active {
+    transform: scale(0.98);
+}
+
+/* Status buttons */
+.status-conforme {
+    background: rgba(16, 185, 129, 0.15);
+    border: 2px solid #10B981;
+    color: #10B981;
+}
+
+.status-conforme.active {
+    background: #10B981;
+    color: white;
+}
+
+.status-non-conforme {
+    background: rgba(239, 68, 68, 0.15);
+    border: 2px solid #EF4444;
+    color: #EF4444;
+}
+
+.status-non-conforme.active {
+    background: #EF4444;
+    color: white;
+}
+
+/* Stepper styles */
+.step-indicator {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.step-indicator.active {
+    background: #FFD700;
+    color: #000;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+}
+
+.step-indicator.completed {
+    background: #10B981;
+    color: white;
+}
+
+.step-indicator.pending {
+    background: #27272a;
+    color: #71717a;
+}
+
+.step-connector {
+    height: 3px;
+    flex: 1;
+    background: #27272a;
+    transition: background-color 0.3s ease;
+}
+
+.step-connector.completed {
+    background: #10B981;
+}
+
+/* Table styles */
+.audit-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.audit-table th {
+    background: #18181b;
+    color: #a1a1aa;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #27272a;
+}
+
+.audit-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #27272a;
+    transition: background-color 0.2s ease;
+}
+
+.audit-table tr:hover td {
+    background: rgba(255, 215, 0, 0.05);
+}
+
+/* Badge styles */
+.badge-conforme {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10B981;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.badge-non-conforme {
+    background: rgba(239, 68, 68, 0.2);
+    color: #EF4444;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Image upload area */
+.upload-area {
+    border: 2px dashed #27272a;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.upload-area:hover {
+    border-color: #FFD700;
+    background: rgba(255, 215, 0, 0.05);
+}
+
+.upload-area.has-image {
+    border-style: solid;
+    border-color: #27272a;
+    padding: 0.5rem;
+}
+
+/* Shimmer loading effect */
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.shimmer {
+    background: linear-gradient(90deg, #18181b 25%, #27272a 50%, #18181b 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+/* Tooltip styles */
+.tooltip {
+    position: relative;
+}
+
+.tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.5rem 0.75rem;
+    background: #27272a;
+    color: white;
+    font-size: 0.75rem;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.tooltip:hover::after {
+    opacity: 1;
+}
