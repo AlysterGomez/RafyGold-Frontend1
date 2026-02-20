@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect, useCallback } from "rea
 import axios from "axios";
 
 // On définit l'URL de base incluant le préfixe de l'API
-const API_URL = "https://rafygold-app.onrender.com/api/v1/auth/login";
+const API_URL = "https://rafygold-app.onrender.com/api/v1";
 
 const AuthContext = createContext(null);
 
