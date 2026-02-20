@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     validateToken();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const login = async (email, password) => {
     // Appel vers https://rafygold-app.onrender.com/api/v1/auth/login
